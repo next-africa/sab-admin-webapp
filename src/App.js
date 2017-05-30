@@ -10,7 +10,7 @@ import NewUniversity from './Pages/NewUniversity';
 import ViewUniversity from './Pages/ViewUniversity';
 import Universities from './containers/Universities'
 import  Sidebar  from 'react-sidebar';
-import Relay from 'react-relay'
+import {createFragmentContainer, graphql} from 'react-relay'
 import Countries from './containers/Countries'
 class App extends Component{
     constructor(props){
@@ -36,24 +36,6 @@ class App extends Component{
     this.toggleDocked = this.toggleDocked.bind(this);
     this.generateItem = this.generateItem.bind(this);
     };
-    componentDidMount(){
-        let that = this
-        fetch("/api/countries/ca/universities", {
-            headers:{
-                'content-type': 'application/json'
-            },
-            method: "GET",
-            mode:"cors",
-            credentials: "same-origin"
-
-        })
-            .then((res) => res.json())
-            .then(function(data){
-                that.setState({universitiesList:data.data});
-                console.log("data",that.state.universitiesList)
-
-            })
-    }
     setCurrentPage(event, { page, props , id}) {
         if (event) event.preventDefault();
         this.setState({ currentPage: page, currentPageProps: props , currentPageId: id});
@@ -96,10 +78,10 @@ class App extends Component{
     }
     generateUserInfos(infos){
         return <NavBarItem style={infos.style} key={infos.key} text={infos.text} url={infos.url}/>
-
     }
 
     render() {
+        console.log(this.props.data);
         const data =  [
 
             {
@@ -147,7 +129,6 @@ class App extends Component{
             </div>
         );
 
-        console.log("here", this.props.country)
         const sidebarProps = {
             sidebar: sidebar,
             docked: this.state.docked,
@@ -192,19 +173,13 @@ class App extends Component{
     //children: React.propTypes.node,
 //}
 
-export default Relay.createContainer(App,{
-    initialVariables: {
-        code: "ca"
-    },
-    fragments: {
-        country : () => Relay.QL`
-            fragment on Country{
-                
-                properties{
-                    code
-                    
-                }
-            }
-        `
-    }
+export default createFragmentContainer(App, {
+    item: graphql`
+      fragment App_item on Country {
+        properties {
+          code
+          name
+        }
+      }
+    `
 });

@@ -5,26 +5,26 @@ schema {
 
 # An address
 type Address {
+  line: String
   city: String
   state: String
   postalCode: String
-  line: String
 }
 
 input AddressInput {
-  line: String
-  city: String
   state: String
   postalCode: String
+  line: String
+  city: String
 }
 
 # A country
 type Country implements Node {
-  # The ID of an object
-  id: ID!
-
   # The properties of the country
   properties: CountryProperties
+
+  # The ID of an object
+  id: ID!
 }
 
 # Properties of a Country object
@@ -43,14 +43,14 @@ input CreateCountryInput {
 }
 
 type CreateCountryPayload {
-  clientMutationId: String!
   country: Country!
+  clientMutationId: String!
 }
 
 input CreateUniversityInput {
+  clientMutationId: String!
   countryCode: String!
   university: UniversityInputForCreate!
-  clientMutationId: String!
 }
 
 type CreateUniversityPayload {
@@ -72,6 +72,15 @@ type SabMutation {
 }
 
 type SabQuery {
+  # Fetches an object given its ID
+  node(
+    # The ID of an object
+    id: ID!
+  ): Node
+
+  # Get the list of countries supported by the application
+  countries: [Country]
+
   # Get a country by country code
   country(
     # The code of the country to get
@@ -82,36 +91,27 @@ type SabQuery {
   universities(
     # The country code of the country from witch to retrieve universities
     countryCode: String!
-  ): [University]
+  ): [University]!
 
   # Get a country by country code
   university(
-    # The code of the country to get
-    countryCode: String!
-
     # The university Id to get
     universityId: String!
-  ): University
 
-  # Fetches an object given its ID
-  node(
-    # The ID of an object
-    id: ID!
-  ): Node
-
-  # Get the list of countries supported by the application
-  countries: [Country]
+    # The code of the country to get
+    countryCode: String!
+  ): University!
 }
 
 # A tuition object with amount and source link
 type Tuition {
-  link: String
   amount: Int
+  link: String
 }
 
 input TuitionInput {
-  amount: Int!
   link: String!
+  amount: Int!
 }
 
 # A University
@@ -124,34 +124,26 @@ type University implements Node {
 }
 
 input UniversityInputForCreate {
+  website: String!
   programListLink: String
   address: AddressInput
   tuition: TuitionInput
   name: String!
   languages: [String]!
-  website: String!
 }
 
 input UniversityInputForUpdate {
-  languages: [String]!
-  website: String!
   programListLink: String
   address: AddressInput
   tuition: TuitionInput
   id: String!
   name: String!
+  languages: [String]!
+  website: String!
 }
 
 # Properties of an University object
 type UniversityProperties {
-  id: String
-
-  # The name of University.
-  name: String
-
-  # The code of the languages used in this University
-  languages: [String]
-
   # The link to the website of this University
   website: String
 
@@ -159,15 +151,22 @@ type UniversityProperties {
   programListLink: String
   address: Address
   tuition: Tuition
+  id: String
+
+  # The name of University.
+  name: String
+
+  # The code of the languages used in this University
+  languages: [String]
 }
 
 input UpdateUniversityInput {
-  university: UniversityInputForUpdate!
   clientMutationId: String!
   countryCode: String!
+  university: UniversityInputForUpdate!
 }
 
 type UpdateUniversityPayload {
-  clientMutationId: String!
   university: University
+  clientMutationId: String!
 }

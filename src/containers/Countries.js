@@ -38,27 +38,5 @@ class Countries extends React.Component{
         )
     }
 }
-export default Relay.createContainer(Countries,{
-    // Countries: graphql`
-    //     fragment  on countries{
-    //         properties{
-    //             code
-    //         }
-    //     }
-    // `
-    initialVariables: {
-        code: "ca"
-    },
-    fragments: {
-        countries : () => Relay.QL`
-            fragment on Countries{
-                id
-                properties{
-                    code
-                    name
-                }
-                
-            }
-        `
-    }
-})
+
+export default Countries;

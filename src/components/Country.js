@@ -28,14 +28,5 @@ class Country extends React.Component{
         )
     }
 }
-export default createFragmentContainer(Country,{
-    Country: graphql`
-        fragment Country on Country(code:"ca"){
-            id
-            properties{
-                code
-                name
-            }
-        }
-    `
-})
+
+export default Country;

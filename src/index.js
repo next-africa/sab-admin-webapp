@@ -1,41 +1,31 @@
-
-
 import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
 import './index.css';
-import Relay from 'react-relay'
- /*ReactDOM.render(
-     <App/>,
-     document.getElementById('root')
- );*/
+import {QueryRenderer, graphql} from 'react-relay';
+import relayEnvironment from './relayEnvironment';
+import countryQuery from './graphql/queries/country';
 
+ReactDOM.render(
+    <QueryRenderer
+        environment={relayEnvironment}
+        query={countryQuery}
+        variables={{code: 'ca'}}
+        render={({error, props}) => {
 
-
-class AppRoute extends Relay.Route {
- static queries = {
- country: () => Relay.QL`
- query { 
-    country(code:$code)
- }
- `,
- };
- static paramDefinitions = {
- // By setting `required` to true, `ProfileRoute` will throw if a `userID`
- // is not supplied when instantiated.
- code: {required: true},
- };
- static routeName = 'AppRoute';
- }
-
- let appRoute = new AppRoute({code:"us"});
- ReactDOM.render(
- <Relay.RootContainer
- Component={App}
- route={appRoute}
- />,
- document.getElementById('root')
- );
+            if (error) {
+                return <div>{error.message}</div>;
+            } else if (props) {
+                return <App />;
+            }
+            return <div>Loading</div>
+        }}
+    >
+        <App />
+    </QueryRenderer>
+    ,
+    document.getElementById('root')
+);
 
 
 
