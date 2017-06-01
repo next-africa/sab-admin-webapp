@@ -2,9 +2,9 @@
  * Created by pdiouf on 2017-03-25.
  */
 import React from "react";
-import UniversityPreview from "../components/UniversityPreview";
+import UniversityPreview from "../../../components/UniversityPreview";
 import { Button } from "react-bootstrap";
-import If from "../components/If";
+import If from "../../../components/If";
 var app = {};
 
 // Some initial universities to start with.

@@ -2,13 +2,13 @@
  * Created by pdiouf on 2017-04-03.
  */
 import React from "react";
-import NotFoundPage from "../components/NotFoundPage";
+import NotFoundPage from "../../NotFoundPage";
 import { Grid, Col, Row } from "react-bootstrap";
-import DomainForm from "../containers/DomainForm";
+import DomainForm from "../../../containers/DomainForm";
 import { Button } from "react-bootstrap";
 import { Modal } from "react-bootstrap";
-import Domains from "./Domains";
-import If from "../components/If";
+import Domains from "../../../containers/Domains";
+import If from "../../If";
 const styles = {
   divider: {
     margin: "8px 0",

@@ -7,10 +7,10 @@ import NavBarItem from "./components/NavBarItem";
 import ContentHeader from "./containers/ContentHeader";
 import SidebarContent from "./containers/SidebarContent";
 import NewUniversity from "./Pages/NewUniversity";
-import ViewUniversity from "./Pages/ViewUniversity";
-import Universities from "./containers/Universities";
+import ViewUniversity from "./containers/university/js/ViewUniversity";
+import Universities from "./containers/universities/js/Universities";
 import Sidebar from "react-sidebar";
-import { createFragmentContainer, graphql } from "react-relay";
+import { createFragmentContainerjs, graphql } from "react-relay";
 import Countries from "./containers/Countries";
 class App extends Component {
   constructor(props) {

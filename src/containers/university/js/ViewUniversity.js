@@ -2,10 +2,10 @@
  * Created by pdiouf on 2017-04-05.
  */
 import React from "react";
-import SingleUniversity from "../containers/SingleUniversity";
+import University from "../../../components/university/js/University";
 
 const ViewUniversity = props => (
-  <SingleUniversity
+  <University
     setCurrentPage={props.setCurrentPage}
     universitiesList={props.universitiesList}
     currentPageId={props.currentPageId}
@@ -14,4 +14,4 @@ const ViewUniversity = props => (
 ViewUniversity.propTypes = {
   setCurrentPage: React.PropTypes.func
 };
-export default ViewUniversity;
+export default University;
