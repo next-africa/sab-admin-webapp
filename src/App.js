@@ -10,7 +10,7 @@ import NewUniversity from "./Pages/NewUniversity";
 import ViewUniversity from "./containers/university/js/ViewUniversity";
 import Universities from "./containers/universities/js/Universities";
 import Sidebar from "react-sidebar";
-import { createFragmentContainerjs, graphql } from "react-relay";
+import { createFragmentContainer, graphql } from "react-relay";
 import Countries from "./containers/Countries";
 class App extends Component {
   constructor(props) {
