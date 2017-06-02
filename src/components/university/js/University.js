@@ -9,6 +9,7 @@ import { Button } from "react-bootstrap";
 import { Modal } from "react-bootstrap";
 import Domains from "../../../containers/Domains";
 import If from "../../If";
+import '../css/university.css'
 const styles = {
   divider: {
     margin: "8px 0",
@@ -38,7 +39,7 @@ var domains = [
     selectedLanguages: ["language 1", "language 2"]
   }
 ];
-const SingleUniversity = React.createClass({
+const University = React.createClass({
   getInitialState() {
     return {
       showModal: false
@@ -148,4 +149,4 @@ const SingleUniversity = React.createClass({
   }
 });
 
-export default SingleUniversity;
+export default University;
