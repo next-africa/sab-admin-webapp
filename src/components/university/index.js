@@ -2,14 +2,14 @@
  * Created by pdiouf on 2017-04-03.
  */
 import React from "react";
-import NotFoundPage from "../../NotFoundPage";
+import NotFoundPage from "../NotFoundPage";
 import { Grid, Col, Row } from "react-bootstrap";
-import DomainForm from "../../../containers/DomainForm";
+import DomainForm from "../DomainForm";
 import { Button } from "react-bootstrap";
 import { Modal } from "react-bootstrap";
-import Domains from "../../../containers/Domains";
-import If from "../../If";
-import '../css/university.css'
+import Domains from "../Domains";
+import If from "../If";
+import CreateReactClass from 'create-react-class'
 const styles = {
   divider: {
     margin: "8px 0",
@@ -39,7 +39,7 @@ var domains = [
     selectedLanguages: ["language 1", "language 2"]
   }
 ];
-const University = React.createClass({
+const University = CreateReactClass({
   getInitialState() {
     return {
       showModal: false
@@ -60,7 +60,8 @@ const University = React.createClass({
     const university = universities.filter(
       university => university.id === id
     )[0];
-
+    const universityProperties = university.properties;
+    debugger;
     if (!university) {
       return <NotFoundPage />;
     }
@@ -76,15 +77,15 @@ const University = React.createClass({
                 <div className="U-address infoLeft">
                   <div className="glyphicon glyphicon-map-marker" />
                   <div className="AddrInfo ">
-                    <p> {university.address.line}</p>
+                    <p> {universityProperties.address.line}</p>
                     <p>
                       {" "}
-                      {university.address.city}
+                      {universityProperties.address.city}
                       {" "}
                       (
-                      {university.address.state}
+                      {universityProperties.address.state}
                       ),
-                      {university.address.code}
+                      {universityProperties.address.code}
                     </p>
                   </div>
                 </div>
@@ -94,14 +95,14 @@ const University = React.createClass({
                 <div style={styles.divider} />
                 <div className="U-links infoLeft">
                   <p>
-                    <strong> Languages </strong>: {university.selectedLanguages}
+                    <strong> Languages </strong>: {universityProperties.selectedLanguages}
                   </p>
-                  <p> Website : {university.website}</p>
-                  <p> ProgramListLink : {university.programListLink}</p>
-                  <p> Languages : {university.selectedLanguages}</p>
+                  <p> Website : {universityProperties.website}</p>
+                  <p> ProgramListLink : {universityProperties.programListLink}</p>
+                  <p> Languages : {universityProperties.selectedLanguages}</p>
 
-                  <p> Tuition link : {university.tuition.link}</p>
-                  <p> Tuition amount : {university.tuition.amount}</p>
+                  <p> Tuition link : {universityProperties.tuition.link}</p>
+                  <p> Tuition amount : {universityProperties.tuition.amount}</p>
                 </div>
               </Col>
 

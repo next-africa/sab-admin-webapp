@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from 'prop-types';
 
 import UniversityCard from "./UniversityCard";
 const UniverityPreview = props => (
@@ -14,6 +15,6 @@ const UniverityPreview = props => (
 );
 
 UniverityPreview.propType = {
-  setCurrentPage: React.PropTypes.func
+  setCurrentPage: PropTypes.func
 };
 export default UniverityPreview;

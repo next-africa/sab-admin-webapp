@@ -4,14 +4,8 @@
 /**
  * Created by pdiouf on 2017-05-13.
  */
-import Select from "../components/Select";
+import Select from "./Select";
 import React from "react";
-import Relay from "react-relay";
-// import {
-//     createFragmentContainer,
-//     graphql,
-//     Relay,
-// } from 'react-relay';
 
 class Countries extends React.Component {
   handleCountrySelection(e) {

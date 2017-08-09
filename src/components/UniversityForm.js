@@ -2,9 +2,9 @@
  * Created by pdiouf on 2017-03-11.
  */
 import React, { Component } from "react";
-import SingleInput from "../components/SingleInput";
-import CheckboxOrRadioGroup from "../components/CheckboxOrRadioGroup";
-import Select from "../components/Select";
+import SingleInput from "./SingleInput";
+import CheckboxOrRadioGroup from "./CheckboxOrRadioGroup";
+import Select from "./Select";
 class UniversityForm extends Component {
   constructor(props) {
     super(props);

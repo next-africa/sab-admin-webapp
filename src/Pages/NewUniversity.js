@@ -2,7 +2,8 @@
  * Created by pdiouf on 2017-04-04.
  */
 import React from "react";
-import UniversityForm from "../containers/UniversityForm";
+import UniversityForm from "../components/UniversityForm";
+import PropTypes from 'prop-types';
 const NewUniversity = props => (
   <div className="NewUniversity">
     <h4 className="page-header">New University </h4>
@@ -15,6 +16,6 @@ const NewUniversity = props => (
 );
 
 NewUniversity.propTypes = {
-  setCurrentPage: React.PropTypes.func
+  setCurrentPage: PropTypes.func
 };
 export default NewUniversity;

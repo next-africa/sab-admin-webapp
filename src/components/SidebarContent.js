@@ -3,7 +3,7 @@
  */
 import React from "react";
 import MenuLeft from "./ContentHeader";
-
+import PropTypes from 'prop-types';
 const linksRoutes = [
   { text: "HOME", route: "/", style: "glyphicon glyphicon-home" },
   {
@@ -72,8 +72,8 @@ const SidebarContent = props => {
 };
 
 SidebarContent.propTypes = {
-  style: React.PropTypes.object,
-  setCurrentPage: React.PropTypes.func
+  style: PropTypes.object,
+  setCurrentPage: PropTypes.func
 };
 
 export default SidebarContent;

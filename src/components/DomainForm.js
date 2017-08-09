@@ -2,12 +2,11 @@
  * Created by pdiouf on 2017-04-08.
  */
 import React from "react";
-import SingleInput from "../components/SingleInput";
-import TextArea from "../components/TextArea";
-import CheckboxOrRadioGroup from "../components/CheckboxOrRadioGroup";
+import SingleInput from "./SingleInput";
+import TextArea from "./TextArea";
+import CheckboxOrRadioGroup from "./CheckboxOrRadioGroup";
 
 var TuitionTmp = { link: "", amount: "" };
-var domains = [];
 var id = 0;
 class DomainForm extends React.Component {
   constructor(props) {
@@ -58,7 +57,7 @@ class DomainForm extends React.Component {
   handleFormSubmit(e) {
     e.preventDefault();
     //Create University
-    var colors = ["blue", "purple", "red", "yellow"];
+    // var colors = ["blue", "purple", "red", "yellow"];
 
     const formPayload = {
       id: id++,

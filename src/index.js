@@ -1,26 +1,26 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import App from "./App";
-import "./index.css";
+import "./css/index.css";
 import { QueryRenderer, graphql } from "react-relay";
 import relayEnvironment from "./relayEnvironment";
-import countryQuery from "./graphql/queries/country";
+import countryQuery from "./graphql/queries/universities";
 
 ReactDOM.render(
   <QueryRenderer
     environment={relayEnvironment}
     query={countryQuery}
-    variables={{ code: "ca" }}
+    variables={{ countryCode: "ca" }}
     render={({ error, props }) => {
       if (error) {
         return <div>{error.message}</div>;
       } else if (props) {
-        return <App />;
+          console.log("proeroiwr =>", props)
+        return <App universitiesList={props.universities} />;
       }
       return <div>Loading</div>;
     }}
   >
-    <App />
   </QueryRenderer>,
   document.getElementById("root")
 );
