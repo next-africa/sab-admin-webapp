@@ -11,17 +11,13 @@ export default graphql `
               id
               name
               address {
-                line
                 city
-                state
-                postalCode
               }
+              website
               languages
               tuition{
-                link
                 amount
               }
-              programListLink
             }
           }
 

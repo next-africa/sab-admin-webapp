@@ -34,8 +34,6 @@ class CardManager extends React.Component {
             </div>
         );
     }
-}/**
- * Created by pdiouf on 2017-08-05.
- */
+}
 
 export  default CardManager;

@@ -56,12 +56,12 @@ const University = CreateReactClass({
   render() {
     const id = this.props.currentPageId;
     console.log("id", id);
-    const universities = this.props.universitiesList;
-    const university = universities.filter(
-      university => university.id === id
-    )[0];
+    // const universities = this.props.universitiesList;
+    // const university = universities.filter(
+    //   university => university.id === id
+    // )[0];
+    const university = this.props.university;
     const universityProperties = university.properties;
-    debugger;
     if (!university) {
       return <NotFoundPage />;
     }
@@ -94,13 +94,7 @@ const University = CreateReactClass({
                 <span>INFOS</span>
                 <div style={styles.divider} />
                 <div className="U-links infoLeft">
-                  <p>
-                    <strong> Languages </strong>: {universityProperties.selectedLanguages}
-                  </p>
-                  <p> Website : {universityProperties.website}</p>
                   <p> ProgramListLink : {universityProperties.programListLink}</p>
-                  <p> Languages : {universityProperties.selectedLanguages}</p>
-
                   <p> Tuition link : {universityProperties.tuition.link}</p>
                   <p> Tuition amount : {universityProperties.tuition.amount}</p>
                 </div>

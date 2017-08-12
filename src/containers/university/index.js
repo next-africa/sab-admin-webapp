@@ -3,37 +3,40 @@
  */
 import React from "react";
 import University from "../../components/university/index";
-import PropTypes from 'prop-types';
+import universityQuery from '../../graphql/queries/university'
 import {
-    createFragmentContainer,
+    QueryRenderer,
     graphql,
 } from 'react-relay';
-const ViewUniversity = props => (
-  <University
-    setCurrentPage={props.setCurrentPage}
-    universitiesList={props.universitiesList}
-    currentPageId={props.currentPageId}
-  />
-);
-ViewUniversity.propTypes = {
-  setCurrentPage: PropTypes.func
-};
-export default createFragmentContainer(University,{
-    viewer : graphql`
-    fragment university_viewer on University{
-      properties{
-        name
-        tuition {
-          amount
-          link
-        }
-        address {
-          city
-          state
-          postalCode
-          line
-        }
-      }
+import relayEnvironment from "../../relayEnvironment";
+
+class Viewer extends React.Component {
+    render() {
+        return (
+        <QueryRenderer
+            environment={relayEnvironment}
+            query={universityQuery}
+            variables={{countryCode: this.props.selectedCountry, universityId: this.props.currentPageId}}
+            render={({error, props}) => {
+                if (error) {
+                    return <div>{error.message}</div>;
+                } else if (props) {
+                    console.log("univerisyt", props);
+
+                    return <University
+                        setCurrentPage={props.setCurrentPage}
+                        university={props.university}
+                        currentPageId={props.currentPageId}
+                    />
+
+                }
+                return <div>Loading</div>;
+            }}
+
+        >
+        </QueryRenderer>
+        )
     }
-  `
-});
+}
+
+export default Viewer;

@@ -34,7 +34,7 @@ const Universities = props => (
 
       </Button>
     </div>
-    <h3>Universitiesss</h3>
+    <h3>Universities</h3>
     <div style={styles.divider} />
 
     <If items={props.universitiesList}>

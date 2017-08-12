@@ -5,10 +5,10 @@ schema {
 
 # An address
 type Address {
+  line: String
   city: String
   state: String
   postalCode: String
-  line: String
 }
 
 input AddressInput {
@@ -37,9 +37,9 @@ type CountryProperties {
 }
 
 input CreateCountryInput {
-  clientMutationId: String!
   name: String!
   code: String!
+  clientMutationId: String!
 }
 
 type CreateCountryPayload {
@@ -48,14 +48,14 @@ type CreateCountryPayload {
 }
 
 input CreateUniversityInput {
+  clientMutationId: String!
   countryCode: String!
   university: UniversityInputForCreate!
-  clientMutationId: String!
 }
 
 type CreateUniversityPayload {
-  university: University
   clientMutationId: String!
+  university: University
 }
 
 # An object with an ID
@@ -72,6 +72,12 @@ type SabMutation {
 }
 
 type SabQuery {
+  # Fetches an object given its ID
+  node(
+    # The ID of an object
+    id: ID!
+  ): Node
+
   # Get the list of countries supported by the application
   countries: [Country]
 
@@ -95,12 +101,6 @@ type SabQuery {
     # The university Id to get
     universityId: String!
   ): University!
-
-  # Fetches an object given its ID
-  node(
-    # The ID of an object
-    id: ID!
-  ): Node
 }
 
 # A tuition object with amount and source link
@@ -124,32 +124,26 @@ type University implements Node {
 }
 
 input UniversityInputForCreate {
+  languages: [String]!
+  website: String!
   programListLink: String
   address: AddressInput
   tuition: TuitionInput
   name: String!
-  languages: [String]!
-  website: String!
 }
 
 input UniversityInputForUpdate {
+  programListLink: String
+  address: AddressInput
   tuition: TuitionInput
   id: String!
   name: String!
   languages: [String]!
   website: String!
-  programListLink: String
-  address: AddressInput
 }
 
 # Properties of an University object
 type UniversityProperties {
-  # The code of the languages used in this University
-  languages: [String]
-
-  # The link to the website of this University
-  website: String
-
   # The link to the program list of this University
   programListLink: String
   address: Address
@@ -158,15 +152,21 @@ type UniversityProperties {
 
   # The name of University.
   name: String
+
+  # The code of the languages used in this University
+  languages: [String]
+
+  # The link to the website of this University
+  website: String
 }
 
 input UpdateUniversityInput {
+  clientMutationId: String!
   countryCode: String!
   university: UniversityInputForUpdate!
-  clientMutationId: String!
 }
 
 type UpdateUniversityPayload {
-  clientMutationId: String!
   university: University
+  clientMutationId: String!
 }

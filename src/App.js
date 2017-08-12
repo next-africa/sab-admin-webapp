@@ -8,9 +8,10 @@ import NavBarItem from "./components/NavBarItem";
 import ContentHeader from "./components/ContentHeader";
 import SidebarContent from "./components/SidebarContent";
 import NewUniversity from "./Pages/NewUniversity";
-import ViewUniversity from "./components/university/index";
+import ViewUniversity from "./containers/university/index";
 import Universities from "./containers/universities/index";
 import Sidebar from "react-sidebar";
+import Countries from './components/countries/index'
 import { createFragmentContainer, graphql } from "react-relay";
 class App extends Component {
   constructor(props) {
@@ -48,18 +49,18 @@ class App extends Component {
     console.log("items:", this.props.universitiesList)
     return {
       universities: (
-        <Universities universitiesList={this.props.universitiesList} />
+        <Universities/>
       ),
       universityForm: (
-        <UniversityForm universitiesList={this.props.universitiesList} />
+        <UniversityForm/>
       ),
       newUniversity: (
-        <NewUniversity universitiesList={this.props.universitiesList} />
+        <NewUniversity/>
       ),
       viewUniversity: (
         <ViewUniversity
-          universitiesList={this.props.universitiesList}
           currentPageId={this.state.currentPageId}
+          selectedCountry = "ca"
         />
       )
     }[this.state.currentPage];
@@ -110,7 +111,11 @@ class App extends Component {
       />
     );
   }
-
+  generateCountriesInfo(infos){
+    return(
+        <Countries countries={this.props.countries} ></Countries>
+    )
+  }
   render() {
     const data = [
       {

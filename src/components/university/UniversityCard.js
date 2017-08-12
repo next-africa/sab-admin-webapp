@@ -10,16 +10,15 @@ const UniversityCard = props => // Create the card.
   <a
     href="#"
     onClick={event => {
-      props.setCurrentPage(event, { page: "viewUniversity", id: props.id });
+      props.setCurrentPage(event, { page: "viewUniversity", id: props.properties.id });
     }}
   >
 
-    <div id={`univ${+props.id}`} className="card-item">
+    <div id={`univ-${+props.properties.id}`} className="card-item">
       <div className={props.color}>
         <div className="card-info">
           <div className="card-name">{props.properties.name}</div>
-          <div className="card-desc">{props.properties.website}</div>
-          <div className="card-desc">{props.properties.address.state}</div>
+          <div className="card-desc">{props.properties.address.city}</div>
         </div>
       </div>
       <div className="clear" />

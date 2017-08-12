@@ -3,18 +3,33 @@
  */
 import React from "react";
 import PropTypes from 'prop-types';
-import View from "../../components/universities/index";
+import Viewer from "../../components/universities/index";
 import {
-    createFragmentContainer,
+    QueryRenderer,
     graphql,
 } from 'react-relay';
 
-
+import relayEnvironment from "../../relayEnvironment";
+import universitiesQuery from '../../graphql/queries/universities'
 class Universities extends React.Component{
     render(){
-        console.log("iciicicic= >", this.props.viewer)
         return (
-            <View setCurrentPage={this.props.setCurrentPage} universitiesList={this.props.universitiesList}/>
+            <QueryRenderer
+                environment={relayEnvironment}
+                query={universitiesQuery}
+                variables={{ countryCode: "ca" }}
+                render={({ error, props }) => {
+                    if (error) {
+                        return <div>{error.message}</div>;
+                    } else if (props) {
+                        console.log("infos =>", props)
+                        return <Viewer setCurrentPage={this.props.setCurrentPage} universitiesList={props.universities}/>
+                    }
+                    return <div>Loading</div>;
+                }}
+            >
+            </QueryRenderer>
+
         )
     }
 }
@@ -23,18 +38,4 @@ class Universities extends React.Component{
 Universities.propTypes = {
   setCurrentPage: PropTypes.func
 };
-export default createFragmentContainer(Universities,{
-    viewer : graphql`
-        fragment universities_viewer on University{
-            properties{
-              name
-              address {
-                city
-                state
-                postalCode
-                line
-              }
-            }
-        }
-    `
-});
+export default Universities
