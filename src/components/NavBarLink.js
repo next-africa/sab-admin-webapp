@@ -6,6 +6,7 @@
  */
 
 import React from "react";
+import PropTypes from 'prop-types';
 const NavBarLink = props => (
   <a onClick={props.controlFunc} key={props.key} href={props.url}>
     <span className={props.style} />
@@ -14,7 +15,7 @@ const NavBarLink = props => (
 );
 
 NavBarLink.PropTypes = {
-  controlFunc: React.PropTypes.func
+  controlFunc: PropTypes.func
 };
 
 export default NavBarLink;

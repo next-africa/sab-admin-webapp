@@ -4,7 +4,7 @@
 import React from "react";
 import { HashRouter as Router, Route, browserHistory } from "react-router-dom";
 import App from "../App";
-import IndexPage from "../containers/UniversityForm";
+import IndexPage from "./UniversityForm";
 import UniversityPage from "../containers/SingleUniversity";
 import NotFoundPage from "../components/NotFoundPage";
 

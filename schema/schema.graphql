@@ -20,11 +20,11 @@ input AddressInput {
 
 # A country
 type Country implements Node {
-  # The properties of the country
-  properties: CountryProperties
-
   # The ID of an object
   id: ID!
+
+  # The properties of the country
+  properties: CountryProperties
 }
 
 # Properties of a Country object
@@ -37,9 +37,9 @@ type CountryProperties {
 }
 
 input CreateCountryInput {
+  name: String!
   code: String!
   clientMutationId: String!
-  name: String!
 }
 
 type CreateCountryPayload {
@@ -54,8 +54,8 @@ input CreateUniversityInput {
 }
 
 type CreateUniversityPayload {
-  university: University
   clientMutationId: String!
+  university: University
 }
 
 # An object with an ID
@@ -95,11 +95,11 @@ type SabQuery {
 
   # Get a country by country code
   university(
-    # The university Id to get
-    universityId: String!
-
     # The code of the country to get
     countryCode: String!
+
+    # The university Id to get
+    universityId: String!
   ): University!
 }
 
@@ -110,8 +110,8 @@ type Tuition {
 }
 
 input TuitionInput {
-  link: String!
   amount: Int!
+  link: String!
 }
 
 # A University
@@ -124,12 +124,12 @@ type University implements Node {
 }
 
 input UniversityInputForCreate {
+  languages: [String]!
   website: String!
   programListLink: String
   address: AddressInput
   tuition: TuitionInput
   name: String!
-  languages: [String]!
 }
 
 input UniversityInputForUpdate {
@@ -144,9 +144,6 @@ input UniversityInputForUpdate {
 
 # Properties of an University object
 type UniversityProperties {
-  # The link to the website of this University
-  website: String
-
   # The link to the program list of this University
   programListLink: String
   address: Address
@@ -158,6 +155,9 @@ type UniversityProperties {
 
   # The code of the languages used in this University
   languages: [String]
+
+  # The link to the website of this University
+  website: String
 }
 
 input UpdateUniversityInput {

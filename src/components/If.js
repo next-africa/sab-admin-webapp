@@ -1,8 +1,9 @@
 /**
  * Created by pdiouf on 2017-04-09.
  */
-import React from "react";
-var If = React.createClass({
+import CreateReactClass from 'create-react-class'
+import PropTypes from 'prop-types';
+var If = CreateReactClass({
   render: function() {
     if (this.props.items.length) {
       return this.props.children;
@@ -12,6 +13,6 @@ var If = React.createClass({
   }
 });
 If.propTypes = {
-  items: React.PropTypes.array.isRequired
+  items: PropTypes.array.isRequired
 };
 export default If;

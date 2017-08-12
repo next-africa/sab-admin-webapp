@@ -1,17 +1,18 @@
 import React, { Component } from "react";
 import "../node_modules/spectre.css/dist/spectre.min.css";
-import "./App.css";
+import "./css/App.css";
 import { Grid } from "react-bootstrap";
-import UniversityForm from "./containers/UniversityForm";
+import PropTypes from 'prop-types';
+import UniversityForm from "./components/UniversityForm";
 import NavBarItem from "./components/NavBarItem";
-import ContentHeader from "./containers/ContentHeader";
-import SidebarContent from "./containers/SidebarContent";
+import ContentHeader from "./components/ContentHeader";
+import SidebarContent from "./components/SidebarContent";
 import NewUniversity from "./Pages/NewUniversity";
-import ViewUniversity from "./Pages/ViewUniversity";
-import Universities from "./containers/Universities";
+import ViewUniversity from "./containers/university/index";
+import Universities from "./containers/universities/index";
 import Sidebar from "react-sidebar";
+import Countries from './components/countries/index'
 import { createFragmentContainer, graphql } from "react-relay";
-import Countries from "./containers/Countries";
 class App extends Component {
   constructor(props) {
     super(props);
@@ -45,20 +46,21 @@ class App extends Component {
     });
   }
   currentPage() {
+    console.log("items:", this.props.universitiesList)
     return {
       universities: (
-        <Universities universitiesList={this.state.universitiesList} />
+        <Universities/>
       ),
       universityForm: (
-        <UniversityForm universitiesList={this.state.universitiesList} />
+        <UniversityForm/>
       ),
       newUniversity: (
-        <NewUniversity universitiesList={this.state.universitiesList} />
+        <NewUniversity/>
       ),
       viewUniversity: (
         <ViewUniversity
-          universitiesList={this.state.universitiesList}
           currentPageId={this.state.currentPageId}
+          selectedCountry = "ca"
         />
       )
     }[this.state.currentPage];
@@ -109,9 +111,12 @@ class App extends Component {
       />
     );
   }
-
+  generateCountriesInfo(infos){
+    return(
+        <Countries countries={this.props.countries} ></Countries>
+    )
+  }
   render() {
-    console.log(this.props.data);
     const data = [
       {
         key: "3",
@@ -159,6 +164,7 @@ class App extends Component {
       open: this.state.open,
       onSetOpen: this.onSetOpen
     };
+    console.log("item",this.props.item )
     return (
       <Sidebar {...sidebarProps}>
         <ContentHeader title={contentHeader}>
@@ -191,9 +197,9 @@ class App extends Component {
     );
   }
 }
-//App.propTypes = {
-//children: React.propTypes.node,
-//}
+App.propTypes = {
+children: PropTypes.node,
+}
 
 export default createFragmentContainer(App, {
   item: graphql`

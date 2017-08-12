@@ -2,7 +2,7 @@
  * Created by pdiouf on 2017-03-12.
  */
 import React from "react";
-
+import PropTypes from 'prop-types';
 const CheckboxOrRadioGroup = props => (
   <div>
     <label className="university-form">{props.title}</label>
@@ -28,12 +28,12 @@ const CheckboxOrRadioGroup = props => (
 );
 
 CheckboxOrRadioGroup.propTypes = {
-  title: React.PropTypes.string.isRequired,
-  type: React.PropTypes.oneOf(["checkbox", "radio"]).isRequired,
-  setName: React.PropTypes.string.isRequired,
-  options: React.PropTypes.array.isRequired,
-  selectedOptions: React.PropTypes.array,
-  controlFunc: React.PropTypes.func.isRequired
+  title: PropTypes.string.isRequired,
+  type: PropTypes.oneOf(["checkbox", "radio"]).isRequired,
+  setName: PropTypes.string.isRequired,
+  options: PropTypes.array.isRequired,
+  selectedOptions: PropTypes.array,
+  controlFunc: PropTypes.func.isRequired
 };
 
 export default CheckboxOrRadioGroup;

@@ -2,13 +2,14 @@
  * Created by pdiouf on 2017-04-03.
  */
 import React from "react";
-import NotFoundPage from "../components/NotFoundPage";
+import NotFoundPage from "../NotFoundPage";
 import { Grid, Col, Row } from "react-bootstrap";
-import DomainForm from "../containers/DomainForm";
+import DomainForm from "../DomainForm";
 import { Button } from "react-bootstrap";
 import { Modal } from "react-bootstrap";
-import Domains from "./Domains";
-import If from "../components/If";
+import Domains from "../Domains";
+import If from "../If";
+import CreateReactClass from 'create-react-class'
 const styles = {
   divider: {
     margin: "8px 0",
@@ -38,7 +39,7 @@ var domains = [
     selectedLanguages: ["language 1", "language 2"]
   }
 ];
-const SingleUniversity = React.createClass({
+const University = CreateReactClass({
   getInitialState() {
     return {
       showModal: false
@@ -55,11 +56,12 @@ const SingleUniversity = React.createClass({
   render() {
     const id = this.props.currentPageId;
     console.log("id", id);
-    const universities = this.props.universitiesList;
-    const university = universities.filter(
-      university => university.id === id
-    )[0];
-
+    // const universities = this.props.universitiesList;
+    // const university = universities.filter(
+    //   university => university.id === id
+    // )[0];
+    const university = this.props.university;
+    const universityProperties = university.properties;
     if (!university) {
       return <NotFoundPage />;
     }
@@ -75,15 +77,15 @@ const SingleUniversity = React.createClass({
                 <div className="U-address infoLeft">
                   <div className="glyphicon glyphicon-map-marker" />
                   <div className="AddrInfo ">
-                    <p> {university.address.line}</p>
+                    <p> {universityProperties.address.line}</p>
                     <p>
                       {" "}
-                      {university.address.city}
+                      {universityProperties.address.city}
                       {" "}
                       (
-                      {university.address.state}
+                      {universityProperties.address.state}
                       ),
-                      {university.address.code}
+                      {universityProperties.address.code}
                     </p>
                   </div>
                 </div>
@@ -92,15 +94,9 @@ const SingleUniversity = React.createClass({
                 <span>INFOS</span>
                 <div style={styles.divider} />
                 <div className="U-links infoLeft">
-                  <p>
-                    <strong> Languages </strong>: {university.selectedLanguages}
-                  </p>
-                  <p> Website : {university.website}</p>
-                  <p> ProgramListLink : {university.programListLink}</p>
-                  <p> Languages : {university.selectedLanguages}</p>
-
-                  <p> Tuition link : {university.tuition.link}</p>
-                  <p> Tuition amount : {university.tuition.amount}</p>
+                  <p> ProgramListLink : {universityProperties.programListLink}</p>
+                  <p> Tuition link : {universityProperties.tuition.link}</p>
+                  <p> Tuition amount : {universityProperties.tuition.amount}</p>
                 </div>
               </Col>
 
@@ -148,4 +144,4 @@ const SingleUniversity = React.createClass({
   }
 });
 
-export default SingleUniversity;
+export default University;

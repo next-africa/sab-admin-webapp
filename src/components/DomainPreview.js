@@ -1,7 +1,8 @@
 import React from "react";
 import { Accordion, Panel } from "react-bootstrap";
+import CreateReactClass from 'create-react-class'
 
-var DomainPreview = React.createClass({
+var DomainPreview = CreateReactClass({
   createItem: function(item) {
     console.log("item:", item);
     var keyId = "domain-" + item.id;

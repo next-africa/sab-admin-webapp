@@ -2,6 +2,7 @@
  * Created by pdiouf on 2017-03-24.
  */
 import React from "react";
+import PropTypes from 'prop-types';
 const styles = {
   root: {
     fontFamily: '"HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif',
@@ -29,12 +30,12 @@ const ContentHeader = props => {
 };
 
 ContentHeader.propTypes = {
-  styles: React.PropTypes.object,
-  title: React.PropTypes.oneOfType([
-    React.PropTypes.string,
-    React.PropTypes.object
+  styles: PropTypes.object,
+  title: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.object
   ]),
-  children: React.PropTypes.object
+  children: PropTypes.object
 };
 
 export default ContentHeader;
